@@ -51,5 +51,43 @@ public class Main {
         transportServiceStation.addTruck(kamaz);
         transportServiceStation.addTruck(mercedes);
         transportServiceStation.doService();
+
+        System.out.println();
+        Market market = new Market();
+        String a = "Anna";
+        String b = "Bob";
+        String c = "Coco";
+        String d = "Don";
+        String e = "Eva";
+        String f = "Figen";
+        String g = "Goga";
+        String h = "Hloya";
+        String i = "Ira";
+        String j = "John";
+        String k = "Karen";
+        String l = "Lola";
+        String m = "May";
+        String n = "Nora";
+        String o = "Oleg";
+        String p = "Piter";
+
+        market.add(a);
+        market.add(b);
+        market.add(c);
+        market.add(d);
+        market.add(e);
+        market.add(f);
+        market.add(g);
+        market.add(h);
+        market.add(i);
+        market.add(j);
+        market.add(k);
+        market.add(l);
+        market.add(m);
+        market.add(n);
+        market.add(o);
+        market.add(p);
+
+
     }
 }
