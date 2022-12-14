@@ -1,5 +1,3 @@
-import java.util.Queue;
-
 public class Main {
     public static void main(String[] args) {
         DriverB kurt = new DriverB("Курт");
@@ -46,6 +44,12 @@ public class Main {
         System.out.println(maz);
         System.out.println(liaz);
 
-
+        System.out.println();
+        ServiceStation<Transport> transportServiceStation = new ServiceStation<Transport>();
+        transportServiceStation.addCar(audi);
+        transportServiceStation.addCar(bmv);
+        transportServiceStation.addTruck(kamaz);
+        transportServiceStation.addTruck(mercedes);
+        transportServiceStation.doService();
     }
 }
