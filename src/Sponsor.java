@@ -23,14 +23,9 @@ public class Sponsor {
     }
 
     public void setName(String name) {
-        if (name == null ||
-                name.isEmpty() ||
-                name.isBlank()) {
-            this.name = "Спонсор решил остаться неизвестным";
-        } else {
-            this.name = name;
-        }
+        this.name = name;
     }
+
 
     @Override
     public String toString() {

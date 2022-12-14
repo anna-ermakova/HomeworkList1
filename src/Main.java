@@ -1,3 +1,5 @@
+import java.util.Queue;
+
 public class Main {
     public static void main(String[] args) {
         DriverB kurt = new DriverB("Курт");
@@ -43,5 +45,7 @@ public class Main {
         System.out.println(lada);
         System.out.println(maz);
         System.out.println(liaz);
+
+
     }
 }
