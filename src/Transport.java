@@ -1,12 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 abstract public class Transport {
     private String brand;
     private String model;
     private double engineVolume;
-    private final List<Sponsor> sponsors;
-
+    Set<Sponsor> sponsors;
+    Set<Mechanic> mechanics;
 
     public Transport(String brand, String model, double engineVolume) {
         if (brand == null || brand.isBlank()) {
@@ -20,16 +19,12 @@ abstract public class Transport {
             this.model = model;
         }
         setEngineVolume(engineVolume);
-        this.sponsors = new ArrayList<>();
+        this.engineVolume = engineVolume;
 
     }
 
-    public abstract ArrayList<Sponsor> getSponsors();
-
-    public abstract List<?> mechanics();
-
     public String mechanicsInfo() {
-        List<?> mechanics = mechanics();
+        List<?> mechanics=new ArrayList<>(mechanics());
         StringBuilder result = new StringBuilder();
         if (!mechanics.isEmpty()) {
             result.append("Механики: ");
@@ -47,6 +42,11 @@ abstract public class Transport {
         sponsors.add(sponsor);
     }
 
+    public Set<Sponsor> getSponsors() {
+        return sponsors;
+    }
+
+    public abstract Set<?> mechanics();
 
     public abstract boolean serviсe();
 
@@ -54,13 +54,14 @@ abstract public class Transport {
 
     @Override
     public String toString() {
+        List<Sponsor> sponsorList =new ArrayList<>(sponsors);
         StringBuilder result = new StringBuilder();
-        if (!sponsors.isEmpty()) {
+        if (!sponsorList.isEmpty()) {
             result.append("Спонсоры: ");
         }
-        for (int i = 0; i < sponsors.size(); i++) {
-            result.append(sponsors.get(i));
-            if (i != sponsors.size() - 1) {
+        for (int i = 0; i < sponsorList.size(); i++) {
+            result.append(sponsorList.get(i));
+            if (i != sponsorList.size() - 1) {
                 result.append(", ");
             }
         }
@@ -82,5 +83,18 @@ abstract public class Transport {
 
     public double getEngineVolume() {
         return engineVolume;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transport transport = (Transport) o;
+        return Double.compare(transport.engineVolume, engineVolume) == 0 && Objects.equals(brand, transport.brand) && Objects.equals(model, transport.model) && Objects.equals(sponsors, transport.sponsors) && Objects.equals(mechanics, transport.mechanics);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, model, engineVolume, sponsors, mechanics);
     }
 }

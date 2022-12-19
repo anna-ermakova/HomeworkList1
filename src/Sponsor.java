@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 enum TypeSponsor {
     COMPANY, PERSON;
@@ -9,13 +11,13 @@ public class Sponsor {
     private TypeSponsor type;
     private String name;
     private int sum;
-    private final ArrayList<Transport> transports;
+    Set<Transport> transports;
 
     public Sponsor(String name, TypeSponsor type, int sum) {
         setName(name);
         setSum(sum);
         setType(TypeSponsor.valueOf(String.valueOf(type)));
-        this.transports = new ArrayList<>();
+        this.transports = new HashSet<>();
     }
 
     public String getName() {

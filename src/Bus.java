@@ -1,16 +1,14 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Bus extends Transport {
 
     private DriverD driver;
-    private final List<Mechanic<Bus>> mechanics;
+    private final Set<Mechanic<Bus>> mechanics;
 
     public Bus(String brand, String model, double engineVolume, DriverD driver, Mechanic<Bus>... mechanics) {
         super(brand, model, engineVolume);
         setDriver(driver);
-        this.mechanics = Arrays.asList(mechanics);
+        this.mechanics =new HashSet<> (Arrays.asList(mechanics));
     }
 
     public void addMechanic(Mechanic<Bus> mechanic) {
@@ -26,17 +24,17 @@ public class Bus extends Transport {
         this.driver = driver;
     }
 
-    public List<Mechanic<Bus>> getMechanics() {
+    public Set<Mechanic<Bus>> getMechanics() {
         return mechanics;
     }
 
     @Override
-    public ArrayList<Sponsor> getSponsors() {
+    public Set<Sponsor> getSponsors() {
         return null;
     }
 
     @Override
-    public List<?> mechanics() {
+    public Set<?> mechanics() {
         return getMechanics();
     }
 

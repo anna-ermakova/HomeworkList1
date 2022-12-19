@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 enum CarBody {
     SEDAN, PIKAP, FOURGON, KOUPE;
@@ -10,15 +8,15 @@ public class Car extends Transport {
     private DriverB driver;
     private CarBody carBody;
 
-    private final ArrayList<Sponsor> sponsors;
-    private final List<Mechanic<Car>> mechanics;
+    Set<Sponsor> sponsors;
+   private final Set<Mechanic<Car>> mechanics;
 
     public Car(String brand, String model, double engineVolume, CarBody carBody, DriverB driver, Mechanic<Car>... mechanics) {
         super(brand, model, engineVolume);
         setCarBody(carBody);
         setDriver(driver);
-        this.sponsors = new ArrayList<>();
-        this.mechanics = Arrays.asList(mechanics);
+        this.sponsors = new HashSet<>();
+        this.mechanics = new HashSet<>(Arrays.asList(mechanics));
     }
 
     public String toString() {
@@ -38,11 +36,11 @@ public class Car extends Transport {
     }
 
     @Override
-    public ArrayList<Sponsor> getSponsors() {
+    public Set<Sponsor> getSponsors() {
         return sponsors;
     }
 
-    public List<Mechanic<Car>> getMechanics() {
+    public Set<Mechanic<Car>> getMechanics() {
         return mechanics;
     }
 
@@ -68,7 +66,7 @@ public class Car extends Transport {
 
 
     @Override
-    public List<?> mechanics() {
+    public Set<?> mechanics() {
         return getMechanics();
     }
 
@@ -82,5 +80,17 @@ public class Car extends Transport {
         System.out.println("Автомобиль " + getBrand() + " " + getModel() + " починен.");
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Car car = (Car) o;
+        return Objects.equals(driver, car.driver) && carBody == car.carBody && Objects.equals(sponsors, car.sponsors) && Objects.equals(mechanics, car.mechanics);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), driver, carBody, sponsors, mechanics);
+    }
 }

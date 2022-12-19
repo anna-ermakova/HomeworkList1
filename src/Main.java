@@ -47,7 +47,7 @@ public class Main {
         System.out.println(liaz);
 
         System.out.println();
-        ServiceStation<Transport> transportServiceStation = new ServiceStation<Transport>();
+        ServiceStation<Transport> transportServiceStation = new ServiceStation();
         transportServiceStation.addCar(audi);
         transportServiceStation.addCar(bmv);
         transportServiceStation.addTruck(kamaz);
